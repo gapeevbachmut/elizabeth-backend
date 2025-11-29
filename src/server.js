@@ -51,6 +51,7 @@ app.get('/test-error', (req, res) => {
 });
 
 // Middleware 404 (після всіх маршрутів)
+
 app.use((req, res) => {
   res.status(404).json({ message: 'Route not found' });
 });

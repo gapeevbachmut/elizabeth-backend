@@ -1,0 +1,26 @@
+[
+  {
+    "title": "фрукти",
+    "year": "2024",
+    "materials": "полотно",
+    "imageUrl": "https://res.cloudinary.com/dyounr2tf/image/upload/v1764443052/fruits_erwose.jpg"
+  },
+  {
+    "title": "інтер'єр",
+    "year": "2024",
+    "materials": "полотно",
+    "imageUrl": "https://res.cloudinary.com/dyounr2tf/image/upload/v1764443063/interior_ucpxh4.jpg"
+  },
+  {
+    "title": "робоче місце",
+    "year": "2024",
+    "materials": "полотно",
+    "imageUrl": "https://res.cloudinary.com/dyounr2tf/image/upload/v1764443082/work_place_hlb7g0.jpg"
+  },
+  {
+    "title": "натюрморт під лампою",
+    "year": "2024",
+    "materials": "полотно",
+    "imageUrl": "https://res.cloudinary.com/dyounr2tf/image/upload/v1764443075/Still-life-under-a-lamp_ungwis.jpg"
+  }
+]

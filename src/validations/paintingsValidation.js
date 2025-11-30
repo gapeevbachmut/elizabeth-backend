@@ -1,6 +1,22 @@
-// src/validations/studentsValidation.js
+// src/validations/paintingValidation.js
 
 import { Joi, Segments } from 'celebrate';
+
+import { isValidObjectId } from 'mongoose';
+
+// Кастомний валідатор для ObjectId
+const objectIdValidator = (value, helpers) => {
+  return !isValidObjectId(value)
+    ? helpers.message('Недійсний формат ідентифікатора.')
+    : value;
+};
+
+// Схема для перевірки параметра paintingId
+export const paintingIdParamSchema = {
+  [Segments.PARAMS]: Joi.object({
+    paintingId: Joi.string().custom(objectIdValidator).required(),
+  }),
+};
 
 export const createPaintingSchema = {
   [Segments.BODY]: Joi.object({
@@ -26,4 +42,18 @@ export const createPaintingSchema = {
     // якщо у моделі буде enum: [] - додати valid()
     imageUrl: Joi.string().required(false),
   }),
+};
+
+export const updatePaintingSchema = {
+  [Segments.PARAMS]: Joi.object({
+    paintingId: Joi.string().custom(objectIdValidator).required(),
+  }),
+  [Segments.BODY]: Joi.object({
+    title: Joi.string().min(3).max(30),
+    year: Joi.number().integer().min(4).max(8),
+    materials: Joi.string(),
+    // якщо у моделі буде enum: [] - додати valid()
+
+    imageUrl: Joi.string(),
+  }).min(1),
 };

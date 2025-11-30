@@ -1,10 +1,10 @@
 import { Router } from 'express';
+import { celebrate } from 'celebrate';
 import {
   createPainting,
   deletePainting,
   updatePainting,
 } from '../controllers/adminContriller.js';
-import { celebrate } from 'celebrate';
 import {
   createPaintingSchema,
   paintingIdParamSchema,

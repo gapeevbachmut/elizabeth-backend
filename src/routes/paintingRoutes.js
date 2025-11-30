@@ -1,14 +1,18 @@
 import { Router } from 'express';
+import { celebrate } from 'celebrate';
+
 import {
   getPaintingId,
   getPaintings,
 } from '../controllers/paintingController.js';
-import { celebrate } from 'celebrate';
-import { paintingIdParamSchema } from '../validations/paintingsValidation.js';
+import {
+  getPaintingsSchema,
+  paintingIdParamSchema,
+} from '../validations/paintingsValidation.js';
 
 const router = Router();
 
-router.get('/gallery-paintings', getPaintings);
+router.get('/gallery-paintings', celebrate(getPaintingsSchema), getPaintings);
 
 router.get(
   '/gallery-paintings/:paintingId',

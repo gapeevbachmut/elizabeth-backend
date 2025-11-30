@@ -16,4 +16,17 @@ const paintingSchema = new Schema(
     versionKey: false,
   },
 );
+
+// Додаємо текстовий індекс: кажемо MongoDB,
+// що по полю title можна робити $text
+
+paintingSchema.index(
+  { title: 'text' },
+  {
+    name: 'PaintingTextIndex',
+    weights: { title: 10 },
+    default_language: 'english',
+  },
+);
+
 export const Painting = model('Painting', paintingSchema);

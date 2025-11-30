@@ -1,7 +1,6 @@
 // src/validations/paintingValidation.js
 
 import { Joi, Segments } from 'celebrate';
-
 import { isValidObjectId } from 'mongoose';
 
 // Кастомний валідатор для ObjectId
@@ -56,4 +55,17 @@ export const updatePaintingSchema = {
 
     imageUrl: Joi.string(),
   }).min(1),
+};
+
+export const getPaintingsSchema = {
+  [Segments.QUERY]: Joi.object({
+    // search: Joi.string().trim(),
+    page: Joi.number().integer().min(1).default(1),
+    perPage: Joi.number().integer().min(5).max(20).default(10),
+    // додати параметри фільтрації за назвою, роками, матеріалами та інше
+    byYear: Joi.number().positive().min(2020), //за роками
+    search: Joi.string().trim().allow(''), //валідацію параметра search - для індексованого пошуку
+    sortBy: Joi.string().valid('_id', 'title', 'year').default('_id'),
+    sortOrder: Joi.string().valid('asc', 'desc').default('asc'),
+  }),
 };

@@ -1,14 +1,15 @@
 import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
+import cookieParser from 'cookie-parser';
 import { errors } from 'celebrate';
-
 import { connectMongoDB } from './db/connectMongoDB.js';
 import { logger } from './middleware/logger.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import paintingRoutes from './routes/paintingRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -16,6 +17,7 @@ const PORT = process.env.PORT ?? 3000;
 app.use(logger);
 app.use(express.json()); // Middleware для парсингу JSON
 app.use(cors()); // Дозволяє запити з будь-яких джерел
+app.use(cookieParser());
 
 // перша сторінка
 app.get('/', (req, res) => {
@@ -23,6 +25,7 @@ app.get('/', (req, res) => {
 });
 
 // Маршрути
+app.use(authRoutes);
 app.use(paintingRoutes);
 app.use(adminRoutes);
 

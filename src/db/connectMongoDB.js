@@ -12,7 +12,7 @@ export const connectMongoDB = async () => {
     //Синхронізація індексів
     //гарантуємо, що індекси в БД відповідають схемі
     await Painting.syncIndexes();
-    console.log('Індекси успішно синхронізовано');
+    // console.log('Індекси успішно синхронізовано');
 
     //
   } catch (error) {
